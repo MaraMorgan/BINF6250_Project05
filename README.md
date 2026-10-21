@@ -135,11 +135,11 @@ This project was much more straightforward that the previous two. I am also taki
 My collaborators and I worked well together. We had some conflicting schedules, so took the approach of code independently and compare later. We checked in with each other regularly to ensure we were all on approximately the same step around the same time, that nobody was getting lost, and that all decision-making would be done together, such as with the tie-breaker and returning a single alignment. We took the steps necessary to ensure efficient communication, and no single person was overruled in the final version, which ended up working quite well for us. I also found being group leader again to be even easier than the first couple times. 
 
 ## Collaborators
-### Katelyn: 
+##### Katelyn: 
 
 I also took Genomics last semester, where we covered local alignment and the Smith-Waterman algorithm, so I was familiar with how the scoring matrix and traceback were going to work for this project. It was good practice implementing it in code again because it made me think about how to translate the process to something that the program can follow. Writing the code went mostly smoothly, but I did think the traceback was the hardest part because it had to both keep track of the position and build the sequences backward. Everyone in the group was able to finish the functions independently without major problems, so our final call was mostly spent comparing approaches and finalizing one version. Our implementation returns a single optimal alignment, since it takes the first maximal cell and breaks ties diagonal, then up, then left, but the second driver program has 2 alignments with the same top score and only one is reported. We discussed if we should make it return all the alignments or just one of them, and ultimately decided that we would just return one since that's what the assignment asked for. If we were to improve this program, we would try to find a way to have it return all the alignments with the same top score.
 
-### Matthew:
+##### Matthew:
 
 I found this project to be much more digestible than sequence assembly. Additionally, developing a general understanding of how projects tend to be structured also likely aided in this. For instance, writing one "main" function that calls the other functions. On this idea, something I could improve on is more concretely understanding how each function fits into the bigger picture before writing code/pseudocode. Sometimes I will have a good idea of what a function should do based on the name and my understanding of the project but have to rework/rethink after looking closer at the arguments and returns specified in the assignment. 
 

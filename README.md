@@ -1,5 +1,5 @@
 # Introduction
-In this project, we utilize the Smith-Waterman algorithm to implement dynamic programming for local pairwise sequence alignment. 
+In this project, we utilize the Smith-Waterman algorithm to implement dynamic programming for local pairwise sequence alignment. We establish a matrix of zeros that get updated as the score is calculated, determine the optimal traceback direction based on the highest scores, and then perform local alignment. Local alignment differs from global alignment in that the all negative scores get reset to zero. This is because we are not trying to align the full sequence, only regions, so negative scores will not accumulate through regions of dissimilarity. Our expected output is a matrix of scores and the best alignment for two sequences. 
 
 # Dependencies
 numpy
@@ -117,10 +117,10 @@ GGGGAAAAAA
  [ 0  0  0  0  0  0  0  0  0  1  2  4  6  8 10]]
 ```
 
-Here we elected to only return a single local optimal alignment, rather than store and return all maximum local alignments. 
+Here we elected to only return a single local optimal alignment, rather than store and return all maximum local alignments, due to time constraints. 
 
 # Successes
-Each group member was able to implement all three functions independently without major problems, and our individual versions all produced the expected output for both drivers. Our team was able to then work efficiently to compare approaches rather than spending time debugging.
+Each group member was able to implement all three functions independently without major problems, and our individual versions all produced the expected output for both drivers. Our team was able to then work efficiently to compare approaches rather than spending time debugging. 
 
 # Struggles
 Despite coming up with similar code, it could still be improved. For example, it does not return multiple alignments if there are equivalent “bests”. This is something that we can see being common in real biological data, and it is also seen in the last sequence alignment task of this project. On the surface this would be straightforward to add, calling traceback for each maximum in the graph, however, it gets more complicated when considering that each maximum could have multiple traceback paths. This is something we would have attempted given more time.
@@ -130,11 +130,11 @@ One struggle that arose throughout the coding process was understanding the logi
 # Personal Reflections
 ## Group Leader
 Mara:
-This project was much more straightforward that the previous two. I am also taking Genomics alongside this class, and we recently discussed dynamic programming and the Smith-Waterman algorithm, so I was already acquainted with the principle, so it was interesting getting to implement it. 
-My collaborators and I worked well together. 
+This project was much more straightforward that the previous two. I am also taking Genomics alongside this class, and we recently discussed dynamic programming and the Smith-Waterman algorithm, so I was already acquainted with the principle, so it was interesting getting to implement it. I found the coding of the traceback to be the most difficult portion. Because we decided to only return a single maximum alignment, we implemented a tie-breaker in the order of diagonal > up > left. I would have liked to return all optimal alignments, and had starting brainstorming how I would do that, but ultimately realized that it would require too many code changes for what our group had time left to do, and we all decided against it. If I were to improve on this code later on, I would try to add that.  
+
+My collaborators and I worked well together. We had some conflicting schedules, so took the approach of code independently and compare later. We checked in with each other regularly to ensure we were all on approximately the same step around the same time, that nobody was getting lost, and that all decision-making would be done together, such as with the tie-breaker and returning a single alignment. We took the steps necessary to ensure efficient communication, and no single person was overruled in the final version, which ended up working quite well for us. 
 
 ## Collaborators
-Other members' reflections on the project
 Katelyn: I also took Genomics last semester, where we covered local alignment and the Smith-Waterman algorithm, so I was familiar with how the scoring matrix and traceback were going to work for this project. It was good practice implementing it in code again because it made me think about how to translate the process to something that the program can follow. Writing the code went mostly smoothly, but I did think the traceback was the hardest part because it had to both keep track of the position and build the sequences backward. Everyone in the group was able to finish the functions independently without major problems, so our final call was mostly spent comparing approaches and finalizing one version. Our implementation returns a single optimal alignment, since it takes the first maximal cell and breaks ties diagonal, then up, then left, but the second driver program has 2 alignments with the same top score and only one is reported. We discussed if we should make it return all the alignments or just one of them, and ultimately decided that we would just return one since that's what the assignment asked for. If we were to improve this program, we would try to find a way to have it return all the alignments with the same top score.
 
 I found this project to be much more digestible than sequence assembly. Additionally, developing a general understanding of how projects tend to be structured also likely aided in this. For instance, writing one "main" function that calls the other functions. On this idea, something I could improve on is more concretely understanding how each function fits into the bigger picture before writing code/pseudocode. Sometimes I will have a good idea of what a function should do based on the name and my understanding of the project but have to rework/rethink after looking closer at the arguments and returns specified in the assignment. 

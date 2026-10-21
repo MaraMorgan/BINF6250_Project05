@@ -1,6 +1,9 @@
 # Introduction
 In this project, we utilize the Smith-Waterman algorithm to implement dynamic programming for local pairwise sequence alignment. 
 
+# Dependencies
+numpy
+
 # Pseudocode
 
 ```
@@ -120,18 +123,10 @@ Here we elected to only return a single local optimal alignment, rather than sto
 Each group member was able to implement all three functions independently without major problems, and our individual versions all produced the expected output for both drivers. Our team was able to then work efficiently to compare approaches rather than spending time debugging.
 
 # Struggles
-Talking points:
+Despite coming up with similar code, it could still be improved. For example, it does not return multiple alignments if there are equivalent “bests”. This is something that we can see being common in real biological data, and it is also seen in the last sequence alignment task of this project. On the surface this would be straightforward to add, calling traceback for each maximum in the graph, however, it gets more complicated when considering that each maximum could have multiple traceback paths. This is something we would have attempted given more time.
 
-Understanding the logic of the traceback through code
+One struggle that arose throughout the coding process was understanding the logic of the traceback through code. For example, what sequence would receive a “-“ if the traceback was “up”. Some things that helped with this were trial and error and thinking through what was changed during the movement. Moving “up” changes the y value (row) but not the x (column), so the sequence on the y axis should have changed but not the sequence on the x. Lastly, figuring out we needed an extra row and column of 0s, and then managing the indexing of this matrix vs the starting sequences was a further challenge.  
 
-keeping track of what variable was associated with what position
-
-understanding that there was an index offset between the matrix and the sequences because of the extra row and column of zeros
-
-
-
-
-(Reflection narrative that describes what went right, what went wrong, what you didn't understand, how it could have been better, and how you could have been better.)
 # Personal Reflections
 ## Group Leader
 Mara:
@@ -141,7 +136,18 @@ My collaborators and I worked well together.
 ## Collaborators
 Other members' reflections on the project
 Katelyn: I also took Genomics last semester, where we covered local alignment and the Smith-Waterman algorithm, so I was familiar with how the scoring matrix and traceback were going to work for this project. It was good practice implementing it in code again because it made me think about how to translate the process to something that the program can follow. Writing the code went mostly smoothly, but I did think the traceback was the hardest part because it had to both keep track of the position and build the sequences backward. Everyone in the group was able to finish the functions independently without major problems, so our final call was mostly spent comparing approaches and finalizing one version. Our implementation returns a single optimal alignment, since it takes the first maximal cell and breaks ties diagonal, then up, then left, but the second driver program has 2 alignments with the same top score and only one is reported. We discussed if we should make it return all the alignments or just one of them, and ultimately decided that we would just return one since that's what the assignment asked for. If we were to improve this program, we would try to find a way to have it return all the alignments with the same top score.
+
+I found this project to be much more digestible than sequence assembly. Additionally, developing a general understanding of how projects tend to be structured also likely aided in this. For instance, writing one "main" function that calls the other functions. On this idea, something I could improve on is more concretely understanding how each function fits into the bigger picture before writing code/pseudocode. Sometimes I will have a good idea of what a function should do based on the name and my understanding of the project but have to rework/rethink after looking closer at the arguments and returns specified in the assignment. 
+
+Despite being less conceptually difficult than last week. It still took some mental effort to figure out how each move in the traceback should translate to code. Unlike doing it by hand in class, the good thing about code is you only had to figure it out once. It also took looking at some of the class readings (Smith & Waterman, 1981) and expected outputs in the assignment to figure out I needed to add an extra row and column of 0s.
+
+Finally, I thought our group worked very well together. We found a couple times to meet but all worked on code relatively independently. At the end we compared our results and found we had similar implementations.
+
 # Generative AI Appendix
 As per the syllabus
 
 Katelyn: I used Claude Opus 5.5 to first give me a refresher on how the Smith-Waterman algorithm fills the scoring matrix and performs the traceback. I also used it to help when I realized I was having a problem with indexing, and it helped me understand the index offset between the matrix and the sequences. I wrote the pseudocode and code for all 3 functions myself, and Claude guided me and reviewed them for errors, pointing out syntax mistakes, suggested I use string concatenation rather than .append, and that we needed to add the negative values. I also used a suggested line of code that used numpy to find the maximum position using np.unravel_index with np.argmax, but we ultimately didn't use this in our final version. I also had it explain to me what to do about ties, and used it to help me with Git and Github. Finally, I used it to help me brainstorm ideas for my reflection.
+
+# Additional Resources
+Smith, T. F., & Waterman, M. S. (1981). Identification of common molecular subsequences. Journal of Molecular Biology, 147(1), 195–197. https://doi.org/10.1016/0022-2836(81)90087-5
+

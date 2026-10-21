@@ -30,8 +30,6 @@ cal_score():
       if the best score is diagonal --> diagonal
       if the best score is up --> up
       otherwise --> left
-      
-      
   Return the score and direction
 
 
@@ -120,19 +118,21 @@ GGGGAAAAAA
 Here we elected to only return a single local optimal alignment, rather than store and return all maximum local alignments, due to time constraints. 
 
 # Successes
-Each group member was able to implement all three functions independently without major problems, and our individual versions all produced the expected output for both drivers. Our team was able to then work efficiently to compare approaches rather than spending time debugging. 
+The logic flow of this project was much more straightforward than other projects.
+We were able to navigate conflicting schedules, each group member was able to implement all three functions independently without major problems, and our individual versions all produced the expected output for both drivers. Our team was able to then work efficiently to compare approaches rather than spending time debugging to determine the best final version and documentation.
+
 
 # Struggles
-Despite coming up with similar code, it could still be improved. For example, it does not return multiple alignments if there are equivalent “bests”. This is something that we can see being common in real biological data, and it is also seen in the last sequence alignment task of this project. On the surface this would be straightforward to add, calling traceback for each maximum in the graph, however, it gets more complicated when considering that each maximum could have multiple traceback paths. This is something we would have attempted given more time.
+Despite all three of us coming up with similar code, we found there could still be improvements. For example, our code does not return multiple alignments if there are equivalent “bests”. This is something that we can see being common in real biological data, and it is also seen in the last sequence alignment task of this project. On the surface, this would be straightforward to add, calling traceback for each maximum in the graph, however, it gets more complicated when considering that each maximum could have multiple traceback paths. This is something we would have attempted given more time.
 
-One struggle that arose throughout the coding process was understanding the logic of the traceback through code. For example, what sequence would receive a “-“ if the traceback was “up”. Some things that helped with this were trial and error and thinking through what was changed during the movement. Moving “up” changes the y value (row) but not the x (column), so the sequence on the y axis should have changed but not the sequence on the x. Lastly, figuring out we needed an extra row and column of 0s, and then managing the indexing of this matrix vs the starting sequences was a further challenge.  
+One struggle that arose throughout the coding process was understanding the logic of the traceback through code, such as which sequence gets the gap depending on direction. For example, which of the two sequences receives “-“ if the traceback direction is “up”. Some things that helped with this were trial and error, thinking through what was changed during the movement, and adding clear comments to keep track of which sequences are changing in order to prevent confusion. Lastly, figuring out we needed an extra row and column of 0s, and then managing the indexing of this matrix vs the starting sequences was a further challenge.  
 
 # Personal Reflections
 ## Group Leader
 Mara:
-This project was much more straightforward that the previous two. I am also taking Genomics alongside this class, and we recently discussed dynamic programming and the Smith-Waterman algorithm, so I was already acquainted with the principle, so it was interesting getting to implement it. I found the coding of the traceback to be the most difficult portion. Because we decided to only return a single maximum alignment, we implemented a tie-breaker in the order of diagonal > up > left. I would have liked to return all optimal alignments, and had starting brainstorming how I would do that, but ultimately realized that it would require too many code changes for what our group had time left to do, and we all decided against it. If I were to improve on this code later on, I would try to add that.  
+This project was much more straightforward that the previous two. I am also taking Genomics alongside this class, and we recently discussed dynamic programming and the Smith-Waterman algorithm, so I was already acquainted with the principle and it was interesting getting to implement it. I found the coding of the traceback to be the most difficult portion. Because we decided to only return a single maximum alignment, we implemented a tie-breaker in the order of diagonal > up > left. I would have liked to return all optimal alignments, and had starting brainstorming how I would do that, but ultimately realized that it would require too many code changes for what our group had time left to do, and we all decided against it. If I were to improve on this code later on, I would try to add that.  
 
-My collaborators and I worked well together. We had some conflicting schedules, so took the approach of code independently and compare later. We checked in with each other regularly to ensure we were all on approximately the same step around the same time, that nobody was getting lost, and that all decision-making would be done together, such as with the tie-breaker and returning a single alignment. We took the steps necessary to ensure efficient communication, and no single person was overruled in the final version, which ended up working quite well for us. 
+My collaborators and I worked well together. We had some conflicting schedules, so took the approach of code independently and compare later. We checked in with each other regularly to ensure we were all on approximately the same step around the same time, that nobody was getting lost, and that all decision-making would be done together, such as with the tie-breaker and returning a single alignment. We took the steps necessary to ensure efficient communication, and no single person was overruled in the final version, which ended up working quite well for us. I also found being group leader again to be even easier than the first couple times. 
 
 ## Collaborators
 Katelyn: 
